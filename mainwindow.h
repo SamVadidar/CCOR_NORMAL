@@ -8,6 +8,9 @@
 #include <opencv2/imgcodecs.hpp>
 #include <QTimer>
 #include <iostream>
+#include <opencv2/face.hpp>
+
+#define COLOR cv::Scalar(255, 255, 255)
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +58,21 @@ private:
     int result_rows, result_cols;
     double minVal; double maxVal; cv::Point minLoc; cv::Point maxLoc;
     double matchVal=0; cv::Point matchLoc;
+
+
+    //Mat frame;
+    cv::Ptr<cv::face::Facemark> facemark;
+    bool success;
+    std::vector<cv::Rect> faces;
+    //cv::CascadeClassifier faceDetector;
+    std::vector< std::vector<cv::Point2f> > landmarks;
+    cv::CascadeClassifier *faceDetector;
+    void drawLandmarks(cv::Mat &im, std::vector<cv::Point2f> &landmarks);
+
+    float x_optic_nose, y_optic_nose;
+    int x_IR_nose, y_IR_nose;
+
+
 
 };
 
